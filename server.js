@@ -101,3 +101,42 @@ app.post('/orders', async (req, res) => {
     }
 });
 
+//Put lessons
+app.put('/lessons/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+
+        // Validate ObjectId
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json({ error: 'Invalid lesson ID' });
+        }
+
+        // Validate that there's something to update
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ error: 'No update data provided' });
+        }
+
+        const result = await db.collection('lessons').updateOne(
+            { _id: new ObjectId(id) },
+            { $set: updateData }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ error: 'Lesson not found' });
+        }
+
+        console.log(`✅ Lesson ${id} updated:`, updateData);
+        
+        res.json({ 
+            message: 'Lesson updated successfully', 
+            modifiedCount: result.modifiedCount,
+            updatedFields: updateData
+        });
+    } catch (error) {
+        console.error('❌ Error updating lesson:', error);
+        res.status(500).json({ error: 'Failed to update lesson' });
+    }
+});
+
+
