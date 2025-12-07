@@ -139,4 +139,6 @@ app.put('/lessons/:id', async (req, res) => {
     }
 });
 
-
+app.get('/', (req, res) => {
+    res.json({ message: 'After School API is running!' });
+});
