@@ -71,3 +71,33 @@ app.get('/lessons', async (req, res) => {
     }
 });
 
+//POST orders
+app.post('/orders', async (req, res) => {
+    try {
+        const order = {
+            name: req.body.name,
+            phone: req.body.phone,
+            lessonIDs: req.body.lessonIDs,        // Array of lesson IDs
+            numberOfSpaces: req.body.numberOfSpaces, // Array of quantities
+            createdAt: new Date()
+        };
+        if (!order.name || !order.phone || !order.lessonIDs || !order.numberOfSpaces) {
+            return res.status(400).json({ 
+                error: 'Missing required fields: name, phone, lessonIDs, numberOfSpaces' 
+            });
+        }
+
+        const result = await db.collection('orders').insertOne(order);
+        console.log('✅ Order created:', result.insertedId);
+        
+        res.status(201).json({ 
+            message: 'Order created successfully', 
+            orderId: result.insertedId,
+            order: order
+        });
+    } catch (error) {
+        console.error('❌ Error creating order:', error);
+        res.status(500).json({ error: 'Failed to create order' });
+    }
+});
+
