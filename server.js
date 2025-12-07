@@ -53,10 +53,10 @@ app.get('/test-db', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
 
 
 //GET lessons
@@ -141,4 +141,10 @@ app.put('/lessons/:id', async (req, res) => {
 
 app.get('/', (req, res) => {
     res.json({ message: 'After School API is running!' });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📍 Test at: http://localhost:${PORT}`);
 });
