@@ -1,8 +1,8 @@
-# After School Classes - Backend API
+# AfterSchool Classes - Backend API
 
 ## Deployed URLs
 
-- **Live API**: https://after-school-api.onrender.com
+- **Live API**: 
 - **GitHub Repository**: https://github.com/yourusername/backend-express-app
 
 ## API Endpoints
@@ -10,13 +10,13 @@
 ### GET /lessons
 Returns all available lessons
 ```
-GET https://after-school-api.onrender.com/lessons
+GET https://backend-express-app-yw9p.onrender.com/lessons
 ```
 
 ### POST /orders
 Creates a new order
 ```
-POST https://after-school-api.onrender.com/orders
+POST https://backend-express-app-yw9p.onrender.com/orders
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 ### PUT /lessons/:id
 Updates a lesson's attributes
 ```
-PUT https://after-school-api.onrender.com/lessons/674a1b2c3d4e5f6g
+PUT https://backend-express-app-yw9p.onrender.com/lessons/693458f8d0e66229c7bc2b8e
 Content-Type: application/json
 
 {
